@@ -18,7 +18,7 @@
                 <tr>
                     <th>{{$staffid}}</th>
                 @foreach($dayData as $daynumber => $staffRotaTimes)
-                    <th>{{$staffRotaTimes['starttime']}}</th>
+                    <th>{{$staffRotaTimes['starttime']}} - {{$staffRotaTimes['endtime']}}</th>
                 @endforeach
                 </tr>
             @endforeach
