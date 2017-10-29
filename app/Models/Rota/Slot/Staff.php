@@ -10,7 +10,21 @@ class Staff extends Model
 
     public function scopeActive($query)
     {
-        return $query->whereNotNull('staffid')->where('slottype', 'shift');
+        return $query->whereNotNull('staffid');
+    }
+
+    public function scopeShifts($query)
+    {
+        $query->active();
+        $query->where('slottype', 'shift');
+        return $query;
+    }
+
+    public function scopeDaysOff($query) 
+    {
+        $query->active();
+        $query->where('slottype', 'dayoff');
+        return $query;
     }
 
 }

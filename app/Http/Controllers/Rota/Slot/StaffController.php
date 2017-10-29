@@ -10,18 +10,20 @@ class StaffController extends Controller
 {
     //
     protected function get() {
-        $data['staffRota'] = SlotRotaStaff::active()->get();
+        $data['rota'] = SlotRotaStaff::active()->get();
+
         $data['staffDays'] = array();
-        foreach($data['staffRota'] as $staffRota) {
+        foreach($data['rota'] as $rota) {
             
-            if(array_search($staffRota->daynumber, $data['staffDays']) === false){
-                $data['staffDays'][] = $staffRota->daynumber;
+            if(array_search($rota->daynumber, $data['staffDays']) === false){
+                $data['staffDays'][] = $rota->daynumber;
             }
             
-            $data['staffRotaBreakdown'][$staffRota->staffid][$staffRota->daynumber]['starttime'] = $staffRota->starttime;
-            $data['staffRotaBreakdown'][$staffRota->staffid][$staffRota->daynumber]['endtime'] = $staffRota->endtime;
+            $data['rotaBreakdown'][$rota->staffid][$rota->daynumber]['dayoff'] = $rota->slottype == 'dayoff' ? true : 0;
+            $data['rotaBreakdown'][$rota->staffid][$rota->daynumber]['starttime'] = $rota->starttime;
+            $data['rotaBreakdown'][$rota->staffid][$rota->daynumber]['endtime'] = $rota->endtime;
         }
-        print_r($data['staffRotaBreakdown']);
+        print_r($data['rotaBreakdown']);
         return view('slot_rota', $data);
     }
 }

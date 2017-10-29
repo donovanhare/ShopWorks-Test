@@ -14,11 +14,15 @@
         </thead>
 
         <tbody>
-            @foreach($staffRotaBreakdown as $staffid => $dayData)
+            @foreach($rotaBreakdown as $staffid => $dayData)
                 <tr>
                     <th>{{$staffid}}</th>
-                @foreach($dayData as $daynumber => $staffRotaTimes)
-                    <th>{{$staffRotaTimes['starttime']}} - {{$staffRotaTimes['endtime']}}</th>
+                @foreach($dayData as $daynumber => $rotaInfo)
+                    @if(!$rotaInfo['dayoff'])
+                        <th>{{$rotaInfo['starttime']}} - {{$rotaInfo['endtime']}}</th>
+                    @else
+                        <th>Day off</th>
+                    @endif
                 @endforeach
                 </tr>
             @endforeach
