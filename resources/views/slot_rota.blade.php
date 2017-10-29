@@ -3,4 +3,7 @@
 
 @section('content')
 Testings
+    @foreach($staff as $s)
+        {{$s}}
+    @endforeach
 @endsection 
