@@ -10,12 +10,12 @@ class StaffController extends Controller
 {
     protected function get() {
         //Grab all rota entries that have staffids
-        $data['rota'] = SlotRota::active()->get();
+        $rota = SlotRota::active()->get();
 
         $data['rotaDays'] = array();
         $data['rotaHours'] = array();
         
-        foreach($data['rota'] as $rota) {
+        foreach($rota as $rota) {
             
             //Correlate unique days
             if(array_search($rota->daynumber, $data['rotaDays']) === false){
@@ -23,9 +23,9 @@ class StaffController extends Controller
             }
             
             //Build new array to pass to view
-            $data['rotaBreakdown'][$rota->staffid][$rota->daynumber]['dayoff'] = $rota->slottype == 'dayoff' ? true : 0;
-            $data['rotaBreakdown'][$rota->staffid][$rota->daynumber]['starttime'] = $rota->starttime;
-            $data['rotaBreakdown'][$rota->staffid][$rota->daynumber]['endtime'] = $rota->endtime;
+            $data['rota'][$rota->staffid][$rota->daynumber]['dayoff'] = $rota->slottype == 'dayoff' ? true : 0;
+            $data['rota'][$rota->staffid][$rota->daynumber]['starttime'] = $rota->starttime;
+            $data['rota'][$rota->staffid][$rota->daynumber]['endtime'] = $rota->endtime;
 
             $data['rotaHours'][$rota->daynumber][] = $rota->workhours;
         }

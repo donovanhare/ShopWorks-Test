@@ -19,7 +19,7 @@
 
         <tbody>
 
-            @foreach($rotaBreakdown as $staffid => $dayData)
+            @foreach($rota as $staffid => $dayData)
                 <tr class="staffRow" data-staffid={{$staffid}}>
                     <th>{{$staffid}}</th>
                     @foreach($dayData as $daynumber => $rotaInfo)

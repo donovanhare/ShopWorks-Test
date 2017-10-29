@@ -10,7 +10,7 @@
         <select class="form-control" id="staffFilter">
             <option value="All">All</option>
         
-            @foreach($rotaBreakdown as $staffid => $dayData)
+            @foreach($rota as $staffid => $dayData)
                 <option value="{{$staffid}}">{{$staffid}}</option>
             @endforeach
         </select>
@@ -38,7 +38,7 @@
                         $(this).hide();
                     }
                 }
-                
+
             });
         }
         
