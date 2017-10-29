@@ -19,11 +19,11 @@
 
         <tbody>
 
-            @foreach($rotaBreakdown as $staffid => $dayData)
+            @foreach($rota as $staffid => $dayData)
                 <tr class="staffRow" data-staffid={{$staffid}}>
                     <th>{{$staffid}}</th>
                     @foreach($dayData as $daynumber => $rotaInfo)
-                        @if(!$rotaInfo['dayoff'])
+                        @if($rotaInfo['dayoff'] == 0)
                             <th>
                                 <div class="row">
                                     <div class="col-sm times">{{$rotaInfo['starttime']}}</div>

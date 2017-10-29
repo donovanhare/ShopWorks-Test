@@ -10,7 +10,9 @@ class Staff extends Model
 
     public function scopeActive($query)
     {
-        return $query->whereNotNull('staffid');
+        $query->whereNotNull('staffid');
+        $query->where('staffid', '!=', 0);
+        return $query;
     }
 
     public function scopeShifts($query)
