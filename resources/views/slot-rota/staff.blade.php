@@ -2,7 +2,11 @@
 @section('title', 'Home')
 
 @section('content')
-    
+
+<h4 class="float-left">Slot Rota</h4>
+
+    @include('slot-rota.components.filter')
+
     <table class="table table-bordered">
         <thead class="thead-dark">
             <tr>
@@ -16,7 +20,7 @@
         <tbody>
 
             @foreach($rotaBreakdown as $staffid => $dayData)
-                <tr>
+                <tr class="staffRow" data-staffid={{$staffid}}>
                     <th>{{$staffid}}</th>
                     @foreach($dayData as $daynumber => $rotaInfo)
                         @if(!$rotaInfo['dayoff'])

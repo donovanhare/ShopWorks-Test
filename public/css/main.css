@@ -10,3 +10,7 @@
 .times {
     text-align: center;
 }
+
+#filterSection {
+    padding-bottom: 1em;
+}

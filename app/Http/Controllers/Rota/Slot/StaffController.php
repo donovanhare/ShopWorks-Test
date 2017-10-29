@@ -36,6 +36,6 @@ class StaffController extends Controller
             $data['rotaHours'][$day]['total'] = array_sum($hours);
         }
 
-        return view('slot_rota', $data);
+        return view('slot-rota.staff', $data);
     }
 }
