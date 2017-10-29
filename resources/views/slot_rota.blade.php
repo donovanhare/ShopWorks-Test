@@ -2,8 +2,27 @@
 @section('title', 'Home')
 
 @section('content')
-Testings
-    @foreach($staff as $s)
-        {{$s}}
-    @endforeach
-@endsection 
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Staff Name</th>
+                @foreach($staffDays as $staffDay)
+                    <th>day{{$staffDay}}</th>
+                @endforeach
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach($staffRotaBreakdown as $staffid => $dayData)
+                <tr>
+                    <th>{{$staffid}}</th>
+                @foreach($dayData as $daynumber => $staffRotaTimes)
+                    <th>{{$staffRotaTimes['starttime']}}</th>
+                @endforeach
+                </tr>
+            @endforeach
+        </tbody>
+
+    </table>
+@endsection
