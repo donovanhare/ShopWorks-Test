@@ -4,19 +4,20 @@ namespace App\Http\Controllers\Rota\Slot;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Rota\Slot\Staff as SlotRotaStaff;
+use App\Models\Rota\Slot\Staff as SlotRota;
 
 class StaffController extends Controller
 {
     //
     protected function get() {
-        $data['rota'] = SlotRotaStaff::active()->get();
+        $data['rota'] = SlotRota::active()->get();
+        $data['rotaDays'] = array();
 
-        $data['staffDays'] = array();
         foreach($data['rota'] as $rota) {
             
-            if(array_search($rota->daynumber, $data['staffDays']) === false){
-                $data['staffDays'][] = $rota->daynumber;
+            //Correlate unique days
+            if(array_search($rota->daynumber, $data['rotaDays']) === false){
+                $data['rotaDays'][] = $rota->daynumber;
             }
             
             $data['rotaBreakdown'][$rota->staffid][$rota->daynumber]['dayoff'] = $rota->slottype == 'dayoff' ? true : 0;

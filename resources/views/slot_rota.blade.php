@@ -7,8 +7,8 @@
         <thead>
             <tr>
                 <th>Staff Name</th>
-                @foreach($staffDays as $staffDay)
-                    <th>day{{$staffDay}}</th>
+                @foreach($rotaDays as $rotaDay)
+                    <th>day{{$rotaDay}}</th>
                 @endforeach
             </tr>
         </thead>
