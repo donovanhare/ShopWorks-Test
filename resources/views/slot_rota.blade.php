@@ -3,30 +3,38 @@
 
 @section('content')
     
-    <table class="table">
-        <thead>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
             <tr>
                 <th>Staff Name</th>
                 @foreach($rotaDays as $rotaDay)
-                    <th>day{{$rotaDay}}</th>
+                    <th>Day {{$rotaDay}}</th>
                 @endforeach
             </tr>
         </thead>
 
         <tbody>
+
             @foreach($rotaBreakdown as $staffid => $dayData)
                 <tr>
                     <th>{{$staffid}}</th>
-                @foreach($dayData as $daynumber => $rotaInfo)
-                    @if(!$rotaInfo['dayoff'])
-                        <th>{{$rotaInfo['starttime']}} - {{$rotaInfo['endtime']}}</th>
-                    @else
-                        <th>Day off</th>
-                    @endif
-                @endforeach
+                    @foreach($dayData as $daynumber => $rotaInfo)
+                        @if(!$rotaInfo['dayoff'])
+                            <th>
+                                <div class="row">
+                                    <div class="col-sm times">{{$rotaInfo['starttime']}}</div>
+                                    <div class="col-xs times">-</div>                                    
+                                    <div class="col-sm times">{{$rotaInfo['endtime']}}</div>
+                                </div>
+                            </th>
+                        @else
+                            <th class="dayoff">Day off</th>
+                        @endif
+                    @endforeach
                 </tr>
             @endforeach
-            <tr>
+
+            <tr class="totalRow table-info">
                 <th>Total Hours</th>
                 @foreach($rotaDays as $rotaDay)
                     <th>{{$rotaHours[$rotaDay]['total']}}</th>
