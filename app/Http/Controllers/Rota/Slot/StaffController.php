@@ -10,8 +10,7 @@ class StaffController extends Controller
 {
     protected function get() {
         //Grab all rota entries that have staffids
-        $rota = SlotRota::active()->get();
-
+        $data['rota'] = SlotRota::active()->orderBy('daynumber')->get();
         $data['rotaDays'] = array();
         $data['rotaHours'] = array();
         
