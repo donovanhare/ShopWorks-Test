@@ -12,7 +12,7 @@
 
 		@include('templates.default.components.navbar')
 
-		<div id="main_content" class="container">
+		<div id="main_content" class="container-fluid">
 
 			@yield('content')
 
