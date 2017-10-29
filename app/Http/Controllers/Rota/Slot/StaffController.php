@@ -9,6 +9,6 @@ class StaffController extends Controller
 {
     //
     protected function get() {
-        return view('welcome');
+        return view('slot_rota');
     }
 }
