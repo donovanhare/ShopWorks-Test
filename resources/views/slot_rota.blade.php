@@ -26,6 +26,12 @@
                 @endforeach
                 </tr>
             @endforeach
+            <tr>
+                <th>Total Hours</th>
+                @foreach($rotaDays as $rotaDay)
+                    <th>{{$rotaHours[$rotaDay]['total']}}</th>
+                @endforeach
+            </tr>
         </tbody>
 
     </table>
