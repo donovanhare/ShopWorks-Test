@@ -34,14 +34,6 @@ class RotaRepository implements RotaInterface
             $data['rota'][$shift->staffid][$shift->daynumber]['dayoff'] = $shift->slottype == 'dayoff' ? true : 0;
             $data['rota'][$shift->staffid][$shift->daynumber]['starttime'] = $shift->starttime;
             $data['rota'][$shift->staffid][$shift->daynumber]['endtime'] = $shift->endtime;
-
-            $data['rotaHours'][$shift->daynumber][] = $shift->workhours;
-        }
-
-        //Clear excess data + Calculate Total Hours
-        foreach($data['rotaHours'] as $day => $hours) {
-            unset($data['rotaHours'][$day]);
-            $data['rotaHours'][$day]['total'] = array_sum($hours);
         }
         return $data;        
     }
@@ -49,7 +41,15 @@ class RotaRepository implements RotaInterface
     public function getDays() 
     {
         $days = $this->model->distinct()->get(['daynumber']);
-
         return $days->toArray();
+    }
+
+    public function getTotalHours()
+    {
+        $totalHours = $this->model->selectRaw('sum(workhours) as workhours')
+                                    ->active()
+                                    ->groupby('daynumber')
+                                    ->get();
+        return $totalHours->toArray();
     }
 }

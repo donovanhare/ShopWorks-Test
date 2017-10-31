@@ -19,8 +19,8 @@ class StaffController extends Controller
 
     protected function get() {
         $data = $this->rota->getActive();
-
         $data['rotaDays'] = $this->rota->getDays();
+        $data['totalHours'] = $this->rota->getTotalHours();
 
         return view('slot-rota.staff', $data);
     }

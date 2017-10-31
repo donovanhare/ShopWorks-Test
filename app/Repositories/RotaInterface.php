@@ -10,4 +10,6 @@ interface RotaInterface {
     public function getActive();
 
     public function getDays();
+
+    public function getTotalHours();
 }
