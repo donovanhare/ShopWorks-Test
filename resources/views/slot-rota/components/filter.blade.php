@@ -27,15 +27,17 @@
             filterTable(this.value);
         });
 
-        function filterTable($staffName) {
+        function filterTable(staffName) {
             $('.staffRow').each(function() {
 
-                if($staffName == "All") {
+                if(staffName == "All") {
                     $(this).show()
                 } else {
                     var staffID = $(this).data('staffid');
-                    if($staffName != staffID) {
+                    if(staffName != staffID) {
                         $(this).hide();
+                    } else {
+                        $(this).show();
                     }
                 }
 
