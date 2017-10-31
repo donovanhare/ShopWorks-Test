@@ -12,7 +12,7 @@
             <tr>
                 <th>Staff Name</th>
                 @foreach($rotaDays as $rotaDay)
-                    <th>Day {{$rotaDay}}</th>
+                    <th>Day {{$rotaDay['daynumber']}}</th>
                 @endforeach
             </tr>
         </thead>
@@ -40,8 +40,8 @@
 
             <tr class="totalRow table-info">
                 <th>Total Hours</th>
-                @foreach($rotaDays as $rotaDay)
-                    <th>{{$rotaHours[$rotaDay]['total']}}</th>
+                @foreach($totalHours as $total)
+                    <th>{{$total['workhours']}}</th>
                 @endforeach
             </tr>
         </tbody>
