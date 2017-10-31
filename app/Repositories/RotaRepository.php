@@ -27,16 +27,9 @@ class RotaRepository implements RotaInterface
     {
         //Grab all rota entries that have staffids
         $rota = $this->model->active()->orderBy('daynumber')->get();
-        $data['rotaDays'] = array();
         $data['rotaHours'] = array();
 
         foreach($rota as $shift) {
-            
-            //Correlate unique days
-            if(array_search($shift->daynumber, $data['rotaDays']) === false){
-                $data['rotaDays'][] = $shift->daynumber;
-            }
-            
             //Build new array to pass to view
             $data['rota'][$shift->staffid][$shift->daynumber]['dayoff'] = $shift->slottype == 'dayoff' ? true : 0;
             $data['rota'][$shift->staffid][$shift->daynumber]['starttime'] = $shift->starttime;
@@ -51,5 +44,12 @@ class RotaRepository implements RotaInterface
             $data['rotaHours'][$day]['total'] = array_sum($hours);
         }
         return $data;        
+    }
+
+    public function getDays() 
+    {
+        $days = $this->model->distinct()->get(['daynumber']);
+
+        return $days->toArray();
     }
 }

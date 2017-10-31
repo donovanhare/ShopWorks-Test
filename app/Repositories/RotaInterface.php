@@ -8,4 +8,6 @@ interface RotaInterface {
     public function getDaysOff();
 
     public function getActive();
+
+    public function getDays();
 }
